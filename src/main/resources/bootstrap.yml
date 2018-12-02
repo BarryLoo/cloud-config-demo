@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: configserver
+  devtools:
+    restart:
+      log-condition-evaluation-delta: true
+      enabled: true
+  cloud:
+    config:
+      profile: null
+      label: null
+      name: null
+      discovery:
+        service-id: configserver
+      server:
+        default-application-name: null
+        default-label: null
+        default-profile: null
+        git:
+          uri: https://github.com/BarryLoo/docker-compose
+          search-paths: config
+          clone-on-start: true
+          force-pull: true
+eureka:
+  instance:
+    prefer-ip-address: true
+management:
+  endpoints:
+    jmx:
+      exposure:
+        include: '*'
+    web:
+      exposure:
+        include: '*'
+      cors:
+        allowed-headers: '*'
+        allowed-methods: '*'
+        allowed-origins: '*'
+  endpoint:
+    health:
+      show-details: always
