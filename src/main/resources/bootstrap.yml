@@ -1,3 +1,6 @@
+logging:
+  file: /var/log/cloud/${spring.application.name}/${spring.application.name}.log
+  path: /var/log/cloud/${spring.application.name}/
 spring:
   application:
     name: configserver
@@ -7,35 +10,25 @@ spring:
       enabled: true
   cloud:
     config:
-      profile: null
-      label: null
-      name: null
       discovery:
+        enabled: true
         service-id: configserver
       server:
-        default-application-name: null
-        default-label: null
-        default-profile: null
+        default-label: master
+        default-profile: application.yml
         git:
           uri: https://github.com/BarryLoo/docker-compose
           search-paths: config
-          clone-on-start: true
-          force-pull: true
 eureka:
   instance:
     prefer-ip-address: true
 management:
   endpoints:
-    jmx:
-      exposure:
-        include: '*'
     web:
       exposure:
         include: '*'
-      cors:
-        allowed-headers: '*'
-        allowed-methods: '*'
-        allowed-origins: '*'
   endpoint:
     health:
       show-details: always
+    restart:
+      enabled: true
